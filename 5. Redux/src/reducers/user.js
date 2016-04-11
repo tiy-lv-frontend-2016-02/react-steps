@@ -9,6 +9,7 @@ export default function(state = userInitialState, action) {
 
       var newState = Object.assign({}, state)
       newState.users = action.users;
+      
       return newState;
 
     default:

@@ -9,12 +9,11 @@ export default React.createClass({
 		}
 	},
 	componentWillMount: function() {
-		var _this = this;
 		getUsers().then(function(response) {
-			_this.setState({
+			this.setState({
 				users: response.data
 			})
-		}).catch(function(err) {
+		}.bind(this)).catch(function(err) {
 			console.error(err);
 		});
 	},

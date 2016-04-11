@@ -13,14 +13,12 @@ export default React.createClass({
   },
 
   componentWillMount: function() {
-     var _this = this;
     store.subscribe(function() {
       var currentStore = store.getState()
-      _this.setState({
+      this.setState({
         hasUsers: currentStore.userReducer.users.length ? true : false
       })
-    })
-
+    }.bind(this))
   },
 
   render: function() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import Users from './users';
 import { getUsers } from 'api/user';
+import store from 'store';
 
 export default React.createClass({
 	getInitialState: function() {
@@ -9,14 +10,13 @@ export default React.createClass({
 		}
 	},
 	componentWillMount: function() {
-		var _this = this;
-		getUsers().then(function(response) {
-			_this.setState({
-				users: response.data
-			})
-		}).catch(function(err) {
-			console.error(err);
-		});
+		getUsers();
+		store.subscribe(function() {
+      var currentStore = store.getState()
+      this.setState({
+      	users: currentStore.userReducer.users
+      })
+    }.bind(this))
 	},
 	render: function() {
 		return (
